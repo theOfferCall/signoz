@@ -96,10 +96,10 @@ services:
   clickhouse:
     <<: *clickhouse-defaults
     container_name: signoz-clickhouse
-    expose:
-      - "9000"
-      - "8123"
-      - "9181"
+    # expose:
+    #   - "9000"
+    #   - "8123"
+    #   - "9181"
     networks:
       - dokploy-network
     volumes:
@@ -183,6 +183,8 @@ services:
       clickhouse:
         condition: service_healthy
     restart: on-failure
+    networks:
+      - dokploy-network
   schema-migrator-async:
     <<: *db-depend
     image: signoz/signoz-schema-migrator:${OTELCOL_TAG:-v0.111.39}
@@ -192,6 +194,8 @@ services:
       - --dsn=tcp://clickhouse:9000
       - --up=
     restart: on-failure
+    networks:
+      - dokploy-network
 networks:
   signoz-net:
     name: signoz-net
