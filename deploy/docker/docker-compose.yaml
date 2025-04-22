@@ -163,6 +163,7 @@ services:
       - LOW_CARDINAL_EXCEPTION_GROUPING=false
     networks:
       - dokploy-network
+      - signoz-net
     expose:
       # - "1777:1777"     # pprof extension
       - "4317" # OTLP gRPC receiver
