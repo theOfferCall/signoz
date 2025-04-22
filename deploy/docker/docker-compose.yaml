@@ -96,10 +96,12 @@ services:
   clickhouse:
     <<: *clickhouse-defaults
     container_name: signoz-clickhouse
-    # ports:
-    #   - "9000:9000"
-    #   - "8123:8123"
-    #   - "9181:9181"
+    expose:
+      - "9000"
+      - "8123"
+      - "9181"
+    networks:
+      - dokploy-network
     volumes:
       - ../common/clickhouse/config.xml:/etc/clickhouse-server/config.xml
       - ../common/clickhouse/users.xml:/etc/clickhouse-server/users.xml
