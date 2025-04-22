@@ -93,6 +93,8 @@ services:
       - ZOO_AUTOPURGE_INTERVAL=1
       - ZOO_ENABLE_PROMETHEUS_METRICS=yes
       - ZOO_PROMETHEUS_METRICS_PORT_NUMBER=9141
+    networks:
+      - dokploy-network
   clickhouse:
     <<: *clickhouse-defaults
     container_name: signoz-clickhouse
