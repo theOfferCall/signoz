@@ -116,6 +116,8 @@ services:
       - --config=/root/config/prometheus.yml
       - --use-logs-new-schema=true
       - --use-trace-new-schema=true
+    networks:
+      - dokploy-network
     expose:
       - "8080" # signoz port
     #   - "6060:6060"     # pprof port
@@ -157,6 +159,8 @@ services:
     environment:
       - OTEL_RESOURCE_ATTRIBUTES=host.name=signoz-host,os.type=linux
       - LOW_CARDINAL_EXCEPTION_GROUPING=false
+    networks:
+      - dokploy-network
     expose:
       # - "1777:1777"     # pprof extension
       - "4317" # OTLP gRPC receiver
