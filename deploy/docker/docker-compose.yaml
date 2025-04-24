@@ -95,6 +95,7 @@ services:
       - ZOO_PROMETHEUS_METRICS_PORT_NUMBER=9141
     networks:
       - dokploy-network
+      - signoz-net
   clickhouse:
     <<: *clickhouse-defaults
     container_name: signoz-clickhouse
@@ -173,10 +174,6 @@ services:
     depends_on:
       signoz:
         condition: service_healthy
-    config:
-        exporters:
-            clickhousetraces:
-                timeout: 10s
   schema-migrator-sync:
     <<: *common
     image: signoz/signoz-schema-migrator:${OTELCOL_TAG:-v0.111.39}
