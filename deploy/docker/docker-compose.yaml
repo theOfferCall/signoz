@@ -98,6 +98,10 @@ services:
       - signoz-net
   clickhouse:
     <<: *clickhouse-defaults
+    environment:
+      - TCP_KEEPALIVE_TIME=300  # seconds before sending keepalive probes
+      - TCP_KEEPALIVE_INTVL=60  # interval between probes
+      - TCP_KEEPALIVE_PROBES=5  # number of probes before dropping connection
     container_name: signoz-clickhouse
     # expose:
     #   - "9000"
