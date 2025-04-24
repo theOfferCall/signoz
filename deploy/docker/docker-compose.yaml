@@ -173,6 +173,10 @@ services:
     depends_on:
       signoz:
         condition: service_healthy
+    config:
+        exporters:
+            clickhousetraces:
+                timeout: 10s
   schema-migrator-sync:
     <<: *common
     image: signoz/signoz-schema-migrator:${OTELCOL_TAG:-v0.111.39}
